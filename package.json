@@ -36,6 +36,8 @@
     "@angular/platform-browser": "~13.0.0",
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
+    "@datorama/akita": "^7.1.1",
+    "@datorama/akita-ng-entity-service": "^7.0.0",
     "@taiga-ui/cdk": "^2.43.0",
     "@taiga-ui/core": "^2.43.0",
     "@taiga-ui/icons": "^2.43.0",

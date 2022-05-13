@@ -21,6 +21,9 @@
           },
           "@ngneat/spectator:spectator-component": {
             "style": "scss"
+          },
+          "@datorama/akita:component": {
+            "styleext": "scss"
           }
         }
       },
