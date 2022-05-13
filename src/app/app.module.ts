@@ -5,6 +5,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {HeaderModule} from "./layout/header/header.module";
+
+const APP_MODULES = [HeaderModule];
+const UI_LIB_MODULES = [TuiRootModule, TuiNotificationsModule, TuiDialogModule];
 
 @NgModule({
   declarations: [
@@ -13,10 +17,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-      TuiRootModule,
-      BrowserAnimationsModule,
-      TuiDialogModule,
-      TuiNotificationsModule
+    BrowserAnimationsModule,
+    [...APP_MODULES],
+    [...UI_LIB_MODULES]
 ],
   providers: [],
   bootstrap: [AppComponent]
