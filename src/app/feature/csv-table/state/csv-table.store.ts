@@ -1,19 +1,13 @@
 import { Injectable } from '@angular/core';
-import { EntityState, Store, StoreConfig } from '@datorama/akita';
-import { CustomColDef } from './csv-table.model';
+import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
+import { Article } from './csv-table.model';
 
-export interface CsvTableState extends EntityState<any> {
-  colDefs: CustomColDef[] | null;
-  test: any;
-}
+export interface CsvTableState extends EntityState<Article> {}
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'csv-table' })
-export class CsvTableStore extends Store<CsvTableState> {
+@StoreConfig({ name: 'csv-table', idKey: 'hauptartikelnr' })
+export class CsvTableStore extends EntityStore<CsvTableState> {
   constructor() {
-    super({
-      colDefs: null,
-      test: [],
-    });
+    super();
   }
 }

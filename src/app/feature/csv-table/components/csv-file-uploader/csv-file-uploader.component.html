@@ -2,7 +2,7 @@
   *ngIf="!control.value"
   accept="text/csv"
   [formControl]="control"
-  (reject)="onReject($event)"
+  (reject)="onReject()"
 ></tui-input-files>
 
 <tui-files class="tui-space_top-1">

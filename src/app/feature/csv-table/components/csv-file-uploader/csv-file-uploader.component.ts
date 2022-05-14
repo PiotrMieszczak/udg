@@ -1,9 +1,15 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TuiFileLike } from '@taiga-ui/kit';
 import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
-import { filter, Subject, switchMap, takeUntil } from 'rxjs';
+import { filter, map, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { CsvTableService } from '../../state/csv-table.service';
+import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
+import {
+  assertProperties,
+  parseKeysToLowerCase,
+} from '../../../../utils/utils';
+import { ARTICLE_PROPS } from '../../state/csv-table.model';
 
 @Component({
   selector: 'app-csv-file-uploader',
@@ -16,7 +22,8 @@ export class CsvFileUploaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private ngxCsvParser: NgxCsvParser,
-    private _storeService: CsvTableService
+    private _storeService: CsvTableService,
+    @Inject(TuiAlertService) private readonly _alertService: TuiAlertService
   ) {}
 
   ngOnInit(): void {
@@ -28,8 +35,14 @@ export class CsvFileUploaderComponent implements OnInit, OnDestroy {
     this._destroy$.unsubscribe();
   }
 
-  onReject(file: TuiFileLike | readonly TuiFileLike[]): void {
-    console.log('Wrong file formar');
+  onReject(): void {
+    this._alertService
+      .open('only CSV file format is accepted', {
+        label: 'Wrong file format!',
+        status: TuiNotification.Error,
+      })
+      .pipe(take(1))
+      .subscribe();
   }
 
   removeFile(): void {
@@ -42,12 +55,17 @@ export class CsvFileUploaderComponent implements OnInit, OnDestroy {
         switchMap((res: File) => {
           return this.ngxCsvParser.parse(res, { header: true, delimiter: ';' });
         }),
+        filter((data) => Array.isArray(data)),
+        map((data) => {
+          const dataWithLowerCasedKeys = parseKeysToLowerCase(
+            data as Record<string, string>[]
+          );
+          assertProperties(ARTICLE_PROPS, dataWithLowerCasedKeys[0]);
+          return dataWithLowerCasedKeys;
+        }),
         takeUntil(this._destroy$)
       )
-      .subscribe((res: Record<string, string>[] | NgxCSVParserError) => {
-        if (res instanceof NgxCSVParserError) {
-          return;
-        }
+      .subscribe((res: any) => {
         this._storeService.saveParsedValue(res);
       });
   }

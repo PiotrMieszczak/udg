@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TuiRootModule, TuiDialogModule } from '@taiga-ui/core';
+import { TuiRootModule, TuiDialogModule, TuiAlertModule } from '@taiga-ui/core';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -8,7 +8,7 @@ import { HeaderModule } from './layout/header/header.module';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 const APP_MODULES = [HeaderModule];
-const UI_LIB_MODULES = [TuiRootModule, TuiDialogModule];
+const UI_LIB_MODULES = [TuiRootModule, TuiDialogModule, TuiAlertModule];
 const STORE_MODULES = [AkitaNgDevtools.forRoot()];
 
 @NgModule({
