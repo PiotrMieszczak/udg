@@ -7,8 +7,9 @@ import { CsvWrapperComponent } from './components/csv-wrapper/csv-wrapper.compon
 import { CsvTableRoutingModule } from './csv-table-routing.module';
 import { TuiFilesModule, TuiInputFilesModule } from '@taiga-ui/kit';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TuiButtonModule } from '@taiga-ui/core';
 
-const LIB_MODULES = [TuiFilesModule, TuiInputFilesModule];
+const LIB_MODULES = [TuiFilesModule, TuiInputFilesModule, TuiButtonModule];
 const APP_MODULES = [CsvTableRoutingModule];
 
 @NgModule({

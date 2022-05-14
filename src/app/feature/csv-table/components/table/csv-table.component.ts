@@ -8,6 +8,8 @@ import { COLD_DEFS } from '../../const/csv-table.const';
 import { Article } from '../../state/csv-table.model';
 import { CsvTableQuery } from '../../state/csv-table.query';
 import { CsvTableService } from '../../state/csv-table.service';
+import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-csv-table',
@@ -21,14 +23,30 @@ export class CsvTableComponent {
   rowBuffer: number = 10;
   columnDefs: ColDef[] = COLD_DEFS;
   rowData: Article[] = [];
+  gridApi: GridApi | null = null;
 
   constructor(
     private readonly _csvTableQuery: CsvTableQuery,
     private readonly _csvTableService: CsvTableService
-  ) {}
+  ) {
+    this.exportCsv();
+  }
 
   onGridReady(params: GridReadyEvent): void {
+    this.gridApi = params.api;
     this._csvTableQuery.selectAll().subscribe((rows) => (this.rowData = rows));
+  }
+
+  exportCsv(): void {
+    this._csvTableQuery
+      .select('exportCsv')
+      .pipe(filter(Boolean))
+      .subscribe(() => {
+        this.gridApi?.exportDataAsCsv({
+          columnSeparator: ';',
+          fileName: `Artikles ${new Date().toLocaleDateString()}.csv`,
+        });
+      });
   }
 
   onCellEditingStopped(event: CellEditingStoppedEvent): void {

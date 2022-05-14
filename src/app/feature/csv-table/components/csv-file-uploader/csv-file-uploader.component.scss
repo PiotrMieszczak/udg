@@ -1,0 +1,8 @@
+.uploader-wrapper {
+  display: flex;
+
+  .wrapper__uploader,
+  .wrapper__remove {
+    flex-grow: 2;
+  }
+}
