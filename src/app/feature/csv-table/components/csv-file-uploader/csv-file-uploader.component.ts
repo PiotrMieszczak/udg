@@ -1,16 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NgxCsvParser } from 'ngx-csv-parser';
-import {
-  filter,
-  map,
-  Observable,
-  of,
-  Subject,
-  switchMap,
-  take,
-  takeUntil,
-} from 'rxjs';
+import { filter, map, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { CsvTableService } from '../../state/csv-table.service';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
 import {
@@ -25,7 +16,7 @@ import { CsvTableQuery } from '../../state/csv-table.query';
   templateUrl: './csv-file-uploader.component.html',
 })
 export class CsvFileUploaderComponent implements OnInit, OnDestroy {
-  readonly control = new FormControl();
+  form: FormGroup;
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -33,7 +24,9 @@ export class CsvFileUploaderComponent implements OnInit, OnDestroy {
     private readonly _storeService: CsvTableService,
     private readonly _storeQuery: CsvTableQuery,
     @Inject(TuiAlertService) private readonly _alertService: TuiAlertService
-  ) {}
+  ) {
+    this.form = this.buildForm();
+  }
 
   ngOnInit(): void {
     this.startControlSubscription();
@@ -55,12 +48,20 @@ export class CsvFileUploaderComponent implements OnInit, OnDestroy {
   }
 
   removeFile(): void {
-    this.control.setValue(null);
+    this.form.setValue({
+      files: null,
+    });
     this._storeService.resetStore();
   }
 
+  private buildForm(): FormGroup {
+    return new FormGroup({
+      files: new FormControl(),
+    });
+  }
+
   private startControlSubscription(): void {
-    this.control.valueChanges
+    this.form.controls['files'].valueChanges
       .pipe(
         filter(Boolean),
         switchMap((res: File) => {

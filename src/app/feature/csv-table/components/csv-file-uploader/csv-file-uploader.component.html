@@ -1,16 +1,18 @@
-<tui-input-files
-  *ngIf="!control.value"
-  accept="text/csv"
-  [formControl]="control"
-  (reject)="onReject()"
-  class="wrapper__uploader"
-></tui-input-files>
+<form [formGroup]="form">
+  <tui-input-files
+    *ngIf="!form.get('files').value"
+    accept="text/csv"
+    formControlName="files"
+    (reject)="onReject()"
+    class="wrapper__uploader"
+  ></tui-input-files>
 
-<tui-files class="tui-space_top-1">
-  <tui-file
-    *ngIf="control.valueChanges | async as file"
-    [file]="file"
-    (removed)="removeFile()"
-    class="wrapper__remove"
-  ></tui-file>
-</tui-files>
+  <tui-files class="tui-space_top-1">
+    <tui-file
+      *ngIf="form.get('files').valueChanges | async as file"
+      [file]="file"
+      (removed)="removeFile()"
+      class="wrapper__remove"
+    ></tui-file>
+  </tui-files>
+</form>
