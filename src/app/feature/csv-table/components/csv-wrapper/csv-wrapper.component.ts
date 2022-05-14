@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-csv-wrapper',
   templateUrl: './csv-wrapper.component.html',

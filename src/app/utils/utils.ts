@@ -21,3 +21,21 @@ export function parseKeysToLowerCase(data: any[]) {
     );
   });
 }
+
+export function getDataPercentageByKey(
+  data: any[],
+  prop: string
+): { label: string; value: string }[] {
+  const getUniqueValuesForHerstellung = [
+    ...new Set(data.map((item) => item.herstellung)),
+  ];
+  return getUniqueValuesForHerstellung.map((key) => {
+    return {
+      label: key ? key : 'no data',
+      value: (
+        (data.filter((row) => row[prop] === key).length / data.length) *
+        100
+      ).toFixed(2),
+    };
+  });
+}
