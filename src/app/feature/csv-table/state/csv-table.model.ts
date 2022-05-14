@@ -36,7 +36,6 @@ export class Article {
     this.material = prop.material;
     this.ursprungsland = prop.ursprungsland;
     this.bildname = prop.bildname;
-    Object.freeze(this);
   }
 }
 

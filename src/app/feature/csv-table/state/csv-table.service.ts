@@ -10,6 +10,10 @@ export class CsvTableService {
     this.csvTableStore.set(this.parseToArticleObj(data));
   }
 
+  updateRowValue(row: Article, key: string, value: string) {
+    this.csvTableStore.update(row.hauptartikelnr, { [key]: value });
+  }
+
   private parseToArticleObj(data: IArticle[]): Article[] {
     return data.map((row) => new Article(row));
   }

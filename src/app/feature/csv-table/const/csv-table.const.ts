@@ -2,7 +2,6 @@ export const COLD_DEFS = [
   {
     headerName: 'Hauptartikelnr',
     field: 'hauptartikelnr',
-    editable: true,
   },
   {
     headerName: 'Artikelname',
@@ -17,11 +16,6 @@ export const COLD_DEFS = [
   {
     headerName: 'Beschreibung',
     field: 'beschreibung',
-    editable: true,
-  },
-  {
-    headerName: 'Hauptartikelnr',
-    field: 'hauptartikelnr',
     editable: true,
   },
   {
