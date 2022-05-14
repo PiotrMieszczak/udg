@@ -1,7 +1,6 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { TuiFileLike } from '@taiga-ui/kit';
-import { NgxCsvParser, NgxCSVParserError } from 'ngx-csv-parser';
+import { NgxCsvParser } from 'ngx-csv-parser';
 import { filter, map, Subject, switchMap, take, takeUntil } from 'rxjs';
 import { CsvTableService } from '../../state/csv-table.service';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
@@ -9,7 +8,7 @@ import {
   assertProperties,
   parseKeysToLowerCase,
 } from '../../../../utils/utils';
-import { ARTICLE_PROPS } from '../../state/csv-table.model';
+import { ARTICLE_PROPS } from '../../const/csv-table.const';
 
 @Component({
   selector: 'app-csv-file-uploader',

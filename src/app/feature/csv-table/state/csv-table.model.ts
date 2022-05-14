@@ -58,22 +58,3 @@ export interface IArticle {
   ursprungsland: string | null;
   bildname: string | null;
 }
-
-export const ARTICLE_PROPS = [
-  'hauptartikelnr',
-  'artikelname',
-  'hersteller',
-  'beschreibung',
-  'materialangaben',
-  'geschlecht',
-  'produktart',
-  'ärmel',
-  'bein',
-  'kragen',
-  'herstellung',
-  'taschenart',
-  'grammatur',
-  'material',
-  'ursprungsland',
-  'bildname',
-];
