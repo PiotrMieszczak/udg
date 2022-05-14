@@ -3,6 +3,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
   collectCoverage: true,
   coverageReporters: ['html'],
-  coverageDirectory: 'coverage/post-manager',
+  coverageDirectory: 'coverage/csv-editor',
   transformIgnorePatterns: ['/node_modules/?!@angular'],
 };
