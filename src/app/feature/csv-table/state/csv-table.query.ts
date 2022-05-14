@@ -4,7 +4,7 @@ import { CsvTableStore, CsvTableState } from './csv-table.store';
 
 @Injectable({ providedIn: 'root' })
 export class CsvTableQuery extends QueryEntity<CsvTableState> {
-  constructor(protected store: CsvTableStore) {
+  constructor(protected override store: CsvTableStore) {
     super(store);
   }
 }

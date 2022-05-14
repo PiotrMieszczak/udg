@@ -1,7 +1,3 @@
-export interface CsvTable {
-  id: number | string;
-}
-
-export function createCsvTable(params: Partial<CsvTable>) {
-  return {} as CsvTable;
+export class CustomColDef {
+  constructor(public headerName: string, public field: string) {}
 }
