@@ -9,9 +9,7 @@ import {
   GridReadyEvent,
 } from 'ag-grid-community';
 import { COLD_DEFS } from '../../const/csv-table.const';
-import { Article } from '../../state/csv-table.model';
-import { CsvTableQuery } from '../../state/csv-table.query';
-import { CsvTableService } from '../../state/csv-table.service';
+import { Article, CsvTableQuery, CsvTableService } from '../../state';
 import { GridApi } from 'ag-grid-community/dist/lib/gridApi';
 import { filter } from 'rxjs';
 

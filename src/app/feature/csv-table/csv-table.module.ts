@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiButtonModule } from '@taiga-ui/core';
 import { CsvActionsComponent } from './components/csv-actions/csv-actions.component';
 import { CsvAddDialogComponent } from './components/csv-add-dialog/csv-add-dialog.component';
+import { CsvGraphsModule } from '../csv-graphs/csv-graphs.module';
 
 const LIB_MODULES = [
   TuiFilesModule,
@@ -21,7 +22,7 @@ const LIB_MODULES = [
   TuiButtonModule,
   TuiInputModule,
 ];
-const APP_MODULES = [CsvTableRoutingModule];
+const APP_MODULES = [CsvTableRoutingModule, CsvGraphsModule];
 
 @NgModule({
   declarations: [

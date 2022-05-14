@@ -1,5 +1,20 @@
-<div class="container table-wrapper">
+<div class="container table-wrapper tui-container">
   <app-csv-file-uploader class="tui-space_bottom-3"></app-csv-file-uploader>
   <app-csv-actions class="tui-space_bottom-3"></app-csv-actions>
-  <app-csv-table></app-csv-table>
+  <app-csv-table class="tui-space_bottom-5"></app-csv-table>
+
+  <div class="tui-row">
+    <app-pie-chart
+      pieChartProp="herstellung"
+      class="tui-col_xs-12 tui-col_md-4 tui-col_lg-4"
+    ></app-pie-chart>
+    <app-pie-chart
+      pieChartProp="kragen"
+      class="tui-col_xs-12 tui-col_md-8 tui-col_lg-8"
+    ></app-pie-chart>
+  </div>
+  <app-pie-chart
+    pieChartProp="material"
+    class="tui-col_xs-12 tui-col_md-12 tui-col_lg-12"
+  ></app-pie-chart>
 </div>
