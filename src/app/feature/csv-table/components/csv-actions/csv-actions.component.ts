@@ -33,7 +33,6 @@ export class CsvActionsComponent implements OnInit {
   constructor(
     @Inject(Injector) private injector: Injector,
     @Inject(TuiDialogService) private readonly _dialogService: TuiDialogService,
-
     private readonly _storeService: CsvTableService,
     private readonly _storeQuery: CsvTableQuery,
     private readonly _cdr: ChangeDetectorRef
