@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+} from '@angular/core';
 import {
   CellEditingStoppedEvent,
   ColDef,
@@ -15,6 +19,7 @@ import { filter } from 'rxjs';
   selector: 'app-csv-table',
   templateUrl: './csv-table.component.html',
   styleUrls: ['./csv-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CsvTableComponent {
   defaultColDef = {
@@ -27,14 +32,18 @@ export class CsvTableComponent {
 
   constructor(
     private readonly _csvTableQuery: CsvTableQuery,
-    private readonly _csvTableService: CsvTableService
+    private readonly _csvTableService: CsvTableService,
+    private readonly _cdr: ChangeDetectorRef
   ) {
     this.exportCsv();
   }
 
   onGridReady(params: GridReadyEvent): void {
     this.gridApi = params.api;
-    this._csvTableQuery.selectAll().subscribe((rows) => (this.rowData = rows));
+    this._csvTableQuery.selectAll().subscribe((rows) => {
+      this.rowData = rows;
+      this._cdr.markForCheck();
+    });
   }
 
   exportCsv(): void {

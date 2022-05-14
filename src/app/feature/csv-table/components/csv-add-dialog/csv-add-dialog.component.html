@@ -1,0 +1,91 @@
+<form [formGroup]="form">
+  <div class="tui-form__row">
+    <tui-input formControlName="hauptartikelnr">Hauptartikelnr</tui-input>
+  </div>
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__row_half-width tui-space_right-2">
+      <tui-input formControlName="artikelname">Artikelname</tui-input>
+    </div>
+    <div class="tui-form__row_half-width">
+      <tui-input formControlName="kragen">Kragen</tui-input>
+    </div>
+  </div>
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__row_half-width tui-space_right-2">
+      <tui-input formControlName="beschreibung">Beschreibung</tui-input>
+    </div>
+    <div class="tui-form__row_half-width">
+      <tui-input formControlName="materialangaben">Materialangaben</tui-input>
+    </div>
+  </div>
+
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__row_half-width tui-space_right-2">
+      <tui-input formControlName="geschlecht">Geschlecht</tui-input>
+    </div>
+    <div class="tui-form__row_half-width">
+      <tui-input formControlName="produktart">Produktart</tui-input>
+    </div>
+  </div>
+
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__row_half-width tui-space_right-2">
+      <tui-input formControlName="ärmel">Ärmel</tui-input>
+    </div>
+    <div class="tui-form__row_half-width">
+      <tui-input formControlName="bein">Bein</tui-input>
+    </div>
+  </div>
+
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__row_half-width tui-space_right-2">
+      <tui-input formControlName="herstellung">Herstellung</tui-input>
+    </div>
+    <div class="tui-form__row_half-width">
+      <tui-input formControlName="taschenart">Taschenart</tui-input>
+    </div>
+  </div>
+
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__row_half-width tui-space_right-2">
+      <tui-input formControlName="grammatur">Grammatur</tui-input>
+    </div>
+    <div class="tui-form__row_half-width">
+      <tui-input formControlName="material">Material</tui-input>
+    </div>
+  </div>
+
+  <div class="tui-form__row tui-form__row_multi-fields">
+    <div class="tui-form__row_half-width tui-space_right-2">
+      <tui-input formControlName="ursprungsland">Ursprungsland</tui-input>
+    </div>
+    <div class="tui-form__row_half-width">
+      <tui-input formControlName="bildname">Bildname</tui-input>
+    </div>
+  </div>
+
+  <div class="tui-form__row">
+    <tui-input formControlName="hersteller">Hersteller</tui-input>
+  </div>
+
+  <div class="tui-form__buttons tui-form__buttons_align_end">
+    <button
+      tuiButton
+      type="button"
+      appearance="outline"
+      class="tui-space_right-3"
+      (click)="dismiss()"
+    >
+      Cancel
+    </button>
+    <button
+      tuiButton
+      type="button"
+      class="tui-space_right-3"
+      [disabled]="!shouldAddBeDisabled"
+      (click)="addData()"
+    >
+      Add
+    </button>
+  </div>
+</form>

@@ -5,11 +5,22 @@ import { AgGridModule } from 'ag-grid-angular';
 import { CsvFileUploaderComponent } from './components/csv-file-uploader/csv-file-uploader.component';
 import { CsvWrapperComponent } from './components/csv-wrapper/csv-wrapper.component';
 import { CsvTableRoutingModule } from './csv-table-routing.module';
-import { TuiFilesModule, TuiInputFilesModule } from '@taiga-ui/kit';
+import {
+  TuiFilesModule,
+  TuiInputFilesModule,
+  TuiInputModule,
+} from '@taiga-ui/kit';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiButtonModule } from '@taiga-ui/core';
+import { CsvActionsComponent } from './components/csv-actions/csv-actions.component';
+import { CsvAddDialogComponent } from './components/csv-add-dialog/csv-add-dialog.component';
 
-const LIB_MODULES = [TuiFilesModule, TuiInputFilesModule, TuiButtonModule];
+const LIB_MODULES = [
+  TuiFilesModule,
+  TuiInputFilesModule,
+  TuiButtonModule,
+  TuiInputModule,
+];
 const APP_MODULES = [CsvTableRoutingModule];
 
 @NgModule({
@@ -17,6 +28,8 @@ const APP_MODULES = [CsvTableRoutingModule];
     CsvTableComponent,
     CsvFileUploaderComponent,
     CsvWrapperComponent,
+    CsvActionsComponent,
+    CsvAddDialogComponent,
   ],
   imports: [
     CommonModule,

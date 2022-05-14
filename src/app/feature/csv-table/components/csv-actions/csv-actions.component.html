@@ -1,0 +1,20 @@
+<div class="actions-wrapper">
+  <button
+    tuiButton
+    type="button"
+    class="tui-space_right-3"
+    [disabled]="!loaded"
+    (click)="addData()"
+  >
+    Add data
+  </button>
+  <button
+    tuiButton
+    type="button"
+    class="tui-space_right-3"
+    [disabled]="!edited"
+    (click)="exportCsv()"
+  >
+    Export CSV
+  </button>
+</div>

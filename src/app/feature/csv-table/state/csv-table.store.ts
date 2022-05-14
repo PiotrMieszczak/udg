@@ -5,6 +5,7 @@ import { Article } from './csv-table.model';
 export interface CsvTableState extends EntityState<Article> {
   exportCsv: boolean;
   edited: boolean;
+  loaded: boolean;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -14,6 +15,7 @@ export class CsvTableStore extends EntityStore<CsvTableState> {
     super({
       exportCsv: false,
       edited: false,
+      loaded: false,
     });
   }
 }

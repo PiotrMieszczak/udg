@@ -8,7 +8,12 @@ import { HeaderModule } from './layout/header/header.module';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 const APP_MODULES = [HeaderModule];
-const UI_LIB_MODULES = [TuiRootModule, TuiDialogModule, TuiAlertModule];
+const UI_LIB_MODULES = [
+  TuiRootModule,
+  TuiDialogModule,
+  TuiAlertModule,
+  TuiDialogModule,
+];
 const STORE_MODULES = [AkitaNgDevtools.forRoot()];
 
 @NgModule({

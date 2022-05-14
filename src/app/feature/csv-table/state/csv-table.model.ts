@@ -1,20 +1,20 @@
 export class Article {
-  hauptartikelnr: string | null = null;
-  artikelname: string | null = null;
-  hersteller: string | null = null;
-  beschreibung: string | null = null;
-  materialangaben: string | null = null;
-  geschlecht: string | null = null;
-  produktart: string | null = null;
-  ärmel: string | null = null;
-  bein: string | null = null;
-  kragen: string | null = null;
-  herstellung: string | null = null;
-  taschenart: string | null = null;
-  grammatur: string | null = null;
-  material: string | null = null;
-  ursprungsland: string | null = null;
-  bildname: string | null = null;
+  hauptartikelnr: string = '';
+  artikelname: string = '';
+  hersteller: string = '';
+  beschreibung: string = '';
+  materialangaben: string = '';
+  geschlecht: string = '';
+  produktart: string = '';
+  ärmel: string = '';
+  bein: string = '';
+  kragen: string = '';
+  herstellung: string = '';
+  taschenart: string = '';
+  grammatur: string = '';
+  material: string = '';
+  ursprungsland: string = '';
+  bildname: string = '';
 
   constructor(prop?: IArticle) {
     if (!prop) {
@@ -40,20 +40,20 @@ export class Article {
 }
 
 export interface IArticle {
-  hauptartikelnr: string | null;
-  artikelname: string | null;
-  hersteller: string | null;
-  beschreibung: string | null;
-  materialangaben: string | null;
-  geschlecht: string | null;
-  produktart: string | null;
-  ärmel: string | null;
-  bein: string | null;
-  kragen: string | null;
-  herstellung: string | null;
-  taschenart: string | null;
-  grammatur: string | null;
-  material: string | null;
-  ursprungsland: string | null;
-  bildname: string | null;
+  hauptartikelnr: string;
+  artikelname: string;
+  hersteller: string;
+  beschreibung: string;
+  materialangaben: string;
+  geschlecht: string;
+  produktart: string;
+  ärmel: string;
+  bein: string;
+  kragen: string;
+  herstellung: string;
+  taschenart: string;
+  grammatur: string;
+  material: string;
+  ursprungsland: string;
+  bildname: string;
 }

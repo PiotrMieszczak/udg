@@ -23,10 +23,8 @@ import { CsvTableQuery } from '../../state/csv-table.query';
 @Component({
   selector: 'app-csv-file-uploader',
   templateUrl: './csv-file-uploader.component.html',
-  styleUrls: ['./csv-file-uploader.component.scss'],
 })
 export class CsvFileUploaderComponent implements OnInit, OnDestroy {
-  edited = false;
   readonly control = new FormControl();
   private _destroy$: Subject<void> = new Subject<void>();
 
@@ -39,7 +37,6 @@ export class CsvFileUploaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.startControlSubscription();
-    this.isTableEdited();
   }
 
   ngOnDestroy(): void {
@@ -60,17 +57,6 @@ export class CsvFileUploaderComponent implements OnInit, OnDestroy {
   removeFile(): void {
     this.control.setValue(null);
     this._storeService.resetStore();
-  }
-
-  exportCsv(): void {
-    this._storeService.exportCsv(true);
-  }
-
-  isTableEdited(): void {
-    this._storeQuery
-      .select('edited')
-      .pipe(takeUntil(this._destroy$))
-      .subscribe((edited) => (this.edited = edited));
   }
 
   private startControlSubscription(): void {

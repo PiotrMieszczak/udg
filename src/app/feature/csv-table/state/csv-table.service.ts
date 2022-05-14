@@ -1,14 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { CsvTableStore } from './csv-table.store';
 import { Article, IArticle } from './csv-table.model';
 import { transaction } from '@datorama/akita';
+import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
+import { take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CsvTableService {
-  constructor(private csvTableStore: CsvTableStore) {}
+  constructor(
+    @Inject(TuiAlertService) private readonly _alertService: TuiAlertService,
+    private csvTableStore: CsvTableStore
+  ) {}
 
+  @transaction()
   saveParsedValue(data: IArticle[]): void {
     this.csvTableStore.set(this.parseToArticleObj(data));
+    this.csvTableStore.update({
+      loaded: true,
+    });
   }
 
   @transaction()
@@ -21,6 +30,18 @@ export class CsvTableService {
     this.csvTableStore.update({
       exportCsv: data,
     });
+  }
+
+  @transaction()
+  addRow(row: Article): void {
+    this.csvTableStore.add(row);
+    this.csvTableStore.update({ edited: true });
+    this._alertService
+      .open('Artikle added', {
+        status: TuiNotification.Success,
+      })
+      .pipe(take(1))
+      .subscribe();
   }
 
   resetStore(): void {
