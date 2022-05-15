@@ -27,13 +27,10 @@ The following components must be installed locally:
 
 - [nodejs](https://nodejs.org/en/) v16.13.0
 
-To run the project locally, enter the following in the command line / bash:
+To run the project locally, enter the following in the command line / bash and visit http://localhost:4200 to browse project:
 
 ```console
-$ git clone <linktorepository>
-$ cd <repositoryname>
 $ npm install
 $ npm run start
 ```
-Visit http://localhost:4200 to browse project locally
 ---
