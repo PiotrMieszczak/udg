@@ -26,7 +26,7 @@ Simple project using Angular.
 * [Jest](https://jestjs.io/)
 * [GitHub Actions](https://github.com/features/actions)
 * [Docker](https://www.docker.com/)
-* 
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
