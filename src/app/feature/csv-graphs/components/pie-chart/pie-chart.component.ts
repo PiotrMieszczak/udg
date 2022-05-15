@@ -13,8 +13,18 @@ export class PieChartComponent implements OnInit {
   @Input()
   pieChartProp: string = '';
 
+  @Input()
+  chartTitle: string = '';
+
   options: AgChartOptions = {
     data: [],
+    height: 400,
+    title: {
+      text: '',
+    },
+    theme: {
+      baseTheme: 'ag-material',
+    },
     series: [
       {
         type: 'pie',
@@ -31,6 +41,14 @@ export class PieChartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getDataForChart();
+  }
+
+  private getDataForChart(): void {
+    if (!this.pieChartProp) {
+      return;
+    }
+
     this._csvTableQuery
       .selectAll()
       .pipe(
@@ -40,6 +58,8 @@ export class PieChartComponent implements OnInit {
       .subscribe((data) => {
         const clone = { ...this.options };
         clone.data = data;
+        // @ts-ignore
+        clone.title.text = this.chartTitle;
         this.options = clone;
       });
   }

@@ -9,6 +9,13 @@ const routes: Routes = [
         (m) => m.CsvTableModule
       ),
   },
+  {
+    path: 'charts',
+    loadChildren: () =>
+      import('./feature/csv-graphs/csv-graphs.module').then(
+        (m) => m.CsvGraphsModule
+      ),
+  },
 ];
 
 @NgModule({

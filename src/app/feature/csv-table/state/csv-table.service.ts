@@ -13,10 +13,13 @@ export class CsvTableService {
   ) {}
 
   @transaction()
-  saveParsedValue(data: IArticle[]): void {
+  saveParsedValue(data: IArticle[], file: File): void {
     this.csvTableStore.set(this.parseToArticleObj(data));
     this.csvTableStore.update({
       loaded: true,
+    });
+    this.csvTableStore.update({
+      selectedFile: file,
     });
   }
 

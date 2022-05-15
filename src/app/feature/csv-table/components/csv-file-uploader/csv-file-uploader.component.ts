@@ -1,7 +1,18 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { NgxCsvParser } from 'ngx-csv-parser';
-import { filter, map, Subject, switchMap, take, takeUntil } from 'rxjs';
+import {
+  filter,
+  map,
+  Observable,
+  of,
+  startWith,
+  Subject,
+  switchMap,
+  take,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import { CsvTableService } from '../../state/csv-table.service';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
 import {
@@ -10,6 +21,8 @@ import {
 } from '../../../../utils/utils';
 import { ARTICLE_PROPS } from '../../const/csv-table.const';
 import { CsvTableQuery } from '../../state/csv-table.query';
+import { IArticle } from '../../state';
+import { TuiFileLike } from '@taiga-ui/kit';
 
 @Component({
   selector: 'app-csv-file-uploader',
@@ -17,6 +30,7 @@ import { CsvTableQuery } from '../../state/csv-table.query';
 })
 export class CsvFileUploaderComponent implements OnInit, OnDestroy {
   form: FormGroup;
+  selectedFile: TuiFileLike | null = null;
   private _destroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -30,6 +44,7 @@ export class CsvFileUploaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.startControlSubscription();
+    this.getFileFromStore();
   }
 
   ngOnDestroy(): void {
@@ -63,22 +78,31 @@ export class CsvFileUploaderComponent implements OnInit, OnDestroy {
   private startControlSubscription(): void {
     this.form.controls['files'].valueChanges
       .pipe(
+        tap(console.log),
         filter(Boolean),
-        switchMap((res: File) => {
-          return this.ngxCsvParser.parse(res, { header: true, delimiter: ';' });
+        switchMap((file: File) => {
+          return this.ngxCsvParser
+            .parse(file, { header: true, delimiter: ';' })
+            .pipe(map((data) => [data, file]));
         }),
-        filter((data) => Array.isArray(data)),
-        map((data) => {
+        filter(([data, file]) => Array.isArray(data)),
+        map(([data, file]) => {
           const dataWithLowerCasedKeys = parseKeysToLowerCase(
             data as Record<string, string>[]
           );
           assertProperties(ARTICLE_PROPS, dataWithLowerCasedKeys[0]);
-          return dataWithLowerCasedKeys;
+          return [dataWithLowerCasedKeys, file];
         }),
         takeUntil(this._destroy$)
       )
-      .subscribe((res: any) => {
-        this._storeService.saveParsedValue(res);
+      .subscribe(([res, file]) => {
+        this._storeService.saveParsedValue(res as IArticle[], file as File);
       });
+  }
+
+  private getFileFromStore(): void {
+    this._storeQuery
+      .select('selectedFile')
+      .subscribe((res) => (this.selectedFile = res));
   }
 }

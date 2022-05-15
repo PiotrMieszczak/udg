@@ -1,4 +1,3 @@
-import { TestBed } from '@angular/core/testing';
 import { PieChartComponent } from './pie-chart.component';
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { CsvTableQuery, CsvTableService } from '../../../csv-table/state';

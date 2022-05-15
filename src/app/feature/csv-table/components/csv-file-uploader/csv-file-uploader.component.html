@@ -1,16 +1,15 @@
 <form [formGroup]="form">
   <tui-input-files
-    *ngIf="!form.get('files')?.value"
+    *ngIf="!selectedFile"
     accept="text/csv"
     formControlName="files"
     (reject)="onReject()"
     class="wrapper__uploader"
   ></tui-input-files>
 
-  <tui-files class="tui-space_top-1">
+  <tui-files *ngIf="selectedFile" class="tui-space_top-1">
     <tui-file
-      *ngIf="form.get('files')?.valueChanges | async as file"
-      [file]="file"
+      [file]="selectedFile"
       (removed)="removeFile()"
       class="wrapper__remove"
     ></tui-file>

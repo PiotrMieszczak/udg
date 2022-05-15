@@ -6,8 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderModule } from './layout/header/header.module';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { NavigationModule } from './layout/navigation/navigation.module';
 
-const APP_MODULES = [HeaderModule];
+const APP_MODULES = [HeaderModule, NavigationModule];
 const UI_LIB_MODULES = [
   TuiRootModule,
   TuiDialogModule,
@@ -26,7 +27,6 @@ const STORE_MODULES = [AkitaNgDevtools.forRoot()];
     [...UI_LIB_MODULES],
     [...STORE_MODULES],
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

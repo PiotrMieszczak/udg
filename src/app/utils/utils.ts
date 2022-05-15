@@ -27,7 +27,6 @@ export function getDataPercentageByKey(
   prop: string
 ): { label: string; value: any }[] {
   const getUniqueValues = [...new Set(data.map((item) => item[prop]))];
-  console.log('getUniqueValuesForHerstellung', getUniqueValues);
   return getUniqueValues.map((key) => {
     return {
       label: key ? key : 'no data',

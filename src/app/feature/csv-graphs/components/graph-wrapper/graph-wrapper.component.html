@@ -1,0 +1,18 @@
+<tui-notification *ngIf="!(selectedFile$ | async)" class="tui-space_top-6">
+  Please import CSV file
+</tui-notification>
+<ng-container *ngIf="selectedFile$ | async">
+  <app-pie-chart
+    pieChartProp="geschlecht"
+    chartTitle="Geschlecht"
+  ></app-pie-chart>
+  <app-pie-chart
+    pieChartProp="herstellung"
+    chartTitle="Heschlecht"
+  ></app-pie-chart>
+  <app-pie-chart pieChartProp="material" chartTitle="Material"></app-pie-chart>
+  <app-pie-chart
+    pieChartProp="materialangaben"
+    chartTitle="Materialangaben"
+  ></app-pie-chart>
+</ng-container>
