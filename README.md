@@ -42,6 +42,7 @@ Simple project using Angular.
    ```sh
    npm run start
    ```
+4. Import Artikel.csv . Editor only works with CSV files constructer like Artikel.csv file   
 <!-- ROADMAP -->
 ## Roadmap
 
